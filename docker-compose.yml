@@ -41,3 +41,15 @@ services:
       - ./subscriber/src:/app/src
     depends_on:
       - kafka
+
+  client:
+    container_name: client-service
+    build:
+      context: ./client
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client/src:/app/src
+    depends_on:
+      - subscriber
