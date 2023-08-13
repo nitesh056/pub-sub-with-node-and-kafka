@@ -19,6 +19,12 @@ services:
       KAFKA_ADVERTISED_PORT: 9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_CREATE_TOPICS: "phrases:1:1:compact"
+    healthcheck:
+      test:
+        ["CMD", "kafka-topics.sh", "--list", "--zookeeper", "zookeeper:2181"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
 
   publisher:
     container_name: publisher-service
@@ -28,7 +34,8 @@ services:
     volumes:
       - ./publisher/src:/app/src
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
 
   subscriber:
     container_name: subscriber-service
@@ -40,7 +47,8 @@ services:
     volumes:
       - ./subscriber/src:/app/src
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
 
   client:
     container_name: client-service
