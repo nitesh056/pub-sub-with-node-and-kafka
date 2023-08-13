@@ -13,3 +13,8 @@ Prerequisites: Install Docker and Docker compose and start by typing on root fol
 ![App Screenshot](./pubsubdiagram.png)
 
 ## Todo
+
+- Setup for production with bash and pm2
+- Add .env files for all the services
+- Add file prettier and eslint
+- Refactor
