@@ -29,3 +29,15 @@ services:
       - ./publisher/src:/app/src
     depends_on:
       - kafka
+
+  subscriber:
+    container_name: subscriber-service
+    build:
+      context: ./subscriber/
+      dockerfile: ./Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./subscriber/src:/app/src
+    depends_on:
+      - kafka
