@@ -8,6 +8,8 @@ Prerequisites: Install Docker and Docker compose and start by typing on root fol
   docker-compose up -d
 ```
 
+Browse the Client app by going to 127.0.0.1:3000 in your web browser.
+
 ## General Architecture
 
 ![App Screenshot](./pubsubdiagram.png)
